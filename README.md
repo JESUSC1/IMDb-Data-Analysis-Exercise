@@ -1,4 +1,4 @@
-<a href="https://mybinder.org/v2/gh/JESUSC1/Data-Science-Exercise-Python.git/HEAD"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" width="115" height="25"></a>
+<a href="https://mybinder.org/v2/gh/JESUSC1/Data-Science-Exercise-Python.git/HEAD"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" width="125" height="25"></a>
 <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" width="130" height="25">
 <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy" width="130" height="25">
 <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib" width="130" height="25">
