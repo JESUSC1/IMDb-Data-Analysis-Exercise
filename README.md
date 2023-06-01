@@ -9,4 +9,4 @@ The purpose of this project is to begin exploring the data on IMDb and some of t
 
 Python Version: 3.10.9
 
-Code submitted as final project for COMP 406 (Data Mining) course. Grade: A+
+Code submitted as final project for COMP 406 (Data Mining) course.
