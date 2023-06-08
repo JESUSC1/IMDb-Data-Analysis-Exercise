@@ -10,6 +10,7 @@ __Part 1__ of this project is to begin exploring the data on IMDb and some of th
 Click 'Open in Colab' to follow along with the code in this notebook!
 
 Python Version: 3.10.9
+
 Python Libraries: for data wrangling (Pandas, Numpy), for visualization (Matplotlib, Seaborn), and data modeling (Scikit-Learn)  
 
 
