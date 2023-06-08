@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## COMP 406 : Final Project
+# ## Data Science Exercise- Part 1
 # ### Jesus Cantu Jr. 
+# ### Last Updated: June 6, 2023
+# ![Image](IMDb.jpg)
 
 # ## Project Aim
 # The purpose of this project is to begin exploring the data on IMDb (https://www.imdb.com/) and some of the associations that may exist between the various variables available. The hope is to take the findings from this report into consideration when creating a recommender system for TV shows/movies or revenue prediction models using IMDb data. 
@@ -49,39 +51,134 @@
 
 # # Data Wrangling
 
-# In[1]:
+# In[108]:
 
 
 # Import required libraries 
 import numpy as np 
 import pandas as pd 
+import urllib.request
+import gzip
+import io
+import os
+print("Imported required libraries for data wrangling.")
+
+
+# In[69]:
+
+
+# Set the working directory to the desired path
+root_dir = os.path.expanduser("/Users/Jesse/Desktop/Workspace/JESUSC1-GitHub/Data-Science-Exercise-Python")
+os.chdir(root_dir)
+
+print(f'My working directory: {root_dir}.')
+
+# By setting the working directory to the root directory, 
+# we can easily access other files and directories within our repository using relative paths.
+
+
+# In[71]:
+
+
+# Read IMDb datasets from local file
+# You can download the files from the links described above. 
+basics_tsv_file = f'{root_dir}/Raw_Data/title.basics.tsv.gz'
+basics = pd.read_csv(basics_tsv_file, sep='\t',low_memory = False)
+basics.head(5)
 
 
 # In[11]:
 
 
-# Read IMDb datasets
-
-basics_tsv_file = "/Users/jesuscantu/Desktop/COMP_406/Raw_Data/title.basics.tsv"
-basics = pd.read_csv(basics_tsv_file, sep='\t',low_memory = False)
-basics.head(5)
-
-
-# In[12]:
-
-
-basics.info()
-
-
-# In[13]:
-
-
-ratings_tsv_file = "/Users/jesuscantu/Desktop/COMP_406/Raw_Data/title.ratings.tsv"
+# Read IMDb datasets from local file
+ratings_tsv_file = f'{root_dir}/Raw_Data/title.ratings.tsv.gz'
 ratings = pd.read_csv(ratings_tsv_file, sep='\t',low_memory = False)
 ratings.head(5)
 
 
 # In[14]:
+
+
+# Read IMDb datasets from local file
+episodes_tsv_file = f'{root_dir}/Raw_Data/title.episode.tsv.gz'
+episodes = pd.read_csv(episodes_tsv_file, sep='\t',low_memory = False)
+episodes.head(5)
+
+
+# In[103]:
+
+
+# Read IMDb datasets from URL
+# Use this if running code from GitHub repo! 
+# Note, data sets might be updated later. There is no guarantee variable names will remain unchanged. 
+basics_url = 'https://datasets.imdbws.com/title.basics.tsv.gz'
+
+# Download the gzipped TSV file
+response = urllib.request.urlopen(basics_url)
+compressed_file = response.read()
+
+# Decompress the gzipped file
+uncompressed_file = gzip.decompress(compressed_file)
+
+# Decode the file contents
+file_content = uncompressed_file.decode('utf-8')
+
+# Read the TSV file into a pandas DataFrame
+basics = pd.read_csv(io.StringIO(file_content), delimiter='\t', low_memory = False)
+basics.head(5)
+
+
+# In[101]:
+
+
+# Read IMDb datasets from URL
+# Use this if running code from GitHub repo! 
+ratings_url = 'https://datasets.imdbws.com/title.ratings.tsv.gz'
+
+# Download the gzipped TSV file
+response = urllib.request.urlopen(ratings_url)
+compressed_file = response.read()
+
+# Decompress the gzipped file
+uncompressed_file = gzip.decompress(compressed_file)
+
+# Decode the file contents
+file_content = uncompressed_file.decode('utf-8')
+
+# Read the TSV file into a pandas DataFrame
+ratings = pd.read_csv(io.StringIO(file_content), delimiter='\t', low_memory = False)
+ratings.head(5)
+
+
+# In[102]:
+
+
+# Read IMDb datasets from URL
+# Use this if running code from GitHub repo! 
+episodes_url = 'https://datasets.imdbws.com/title.ratings.tsv.gz'
+
+# Download the gzipped TSV file
+response = urllib.request.urlopen(episodes_url)
+compressed_file = response.read()
+
+# Decompress the gzipped file
+uncompressed_file = gzip.decompress(compressed_file)
+
+# Decode the file contents
+file_content = uncompressed_file.decode('utf-8')
+
+# Read the TSV file into a pandas DataFrame
+episodes= pd.read_csv(io.StringIO(file_content), delimiter='\t', low_memory = False)
+episodes.head(5)
+
+
+# In[72]:
+
+
+basics.info()
+
+
+# In[12]:
 
 
 ratings.info()
@@ -90,22 +187,13 @@ ratings.info()
 # In[15]:
 
 
-episodes_tsv_file = "/Users/jesuscantu/Desktop/COMP_406/Raw_Data/title.episode.tsv"
-episodes = pd.read_csv(episodes_tsv_file, sep='\t',low_memory = False)
-episodes.head(5)
-
-
-# In[17]:
-
-
 episodes.info()
 
 
-# In[47]:
+# In[16]:
 
 
 # Merge IMDb Basics, Ratings & Episodes data sets by tconst
-
 data_merged_basics_ratings = pd.merge(basics, ratings, on = "tconst")
 data_merged_basics_ratings_episodes = pd.merge(data_merged_basics_ratings, episodes, on = "tconst")
 print("IMDb data has been merged.")
@@ -117,25 +205,25 @@ print("IMDb data has been merged.")
 data_merged_basics_ratings.shape # This new dataset has ~1 million rows and 11 columns 
 
 
-# In[49]:
+# In[18]:
 
 
 data_merged_basics_ratings.head()
 
 
-# In[50]:
+# In[19]:
 
 
 data_merged_basics_ratings_episodes.shape #This new dataset has ~637K rows and 14 columns 
 
 
-# In[51]:
+# In[20]:
 
 
 data_merged_basics_ratings_episodes.head()
 
 
-# In[52]:
+# In[21]:
 
 
 # Check for duplicate rows in merged data sets 
@@ -155,7 +243,7 @@ else:
     print('There are no duplicate rows in the dataframe: data_merged_basics_ratings_episodes')
 
 
-# In[53]:
+# In[22]:
 
 
 # Check for missing values in merged data sets 
@@ -181,7 +269,7 @@ data_merged_basics_ratings = data_merged_basics_ratings.replace('\\N', np.nan) #
 data_merged_basics_ratings_episodes = data_merged_basics_ratings_episodes.replace('\\N', np.nan) # replace all occurrences of '\\N' with NaN
 
 
-# In[54]:
+# In[23]:
 
 
 # Re-check for missing values in merged data set 
@@ -203,12 +291,12 @@ else:
     print('The dataframe data_merged_basics_ratings_episodes has no missing values')
 
 
-# In[55]:
+# In[25]:
 
 
 # Save the merged dataframes to a CSV file for future use
 # At this point, we will not remove any missing values 
-path = '/Users/jesuscantu/Desktop/COMP_406/Processed_Data'
+path = f'{root_dir}/Processed_Data'
 
 filename1 = 'IMDb_basic_ratings_data.csv'
 filename2 = 'IMDb_basic_ratings_episodes_data.csv'
@@ -225,32 +313,76 @@ print(f'The 2nd file has been saved to: {path}/{filename2}')
 
 # We will begin our investigation by identifying the number of years included in the data set, as well as the different tile types and genres associated with all the titles in the data set. 
 
-# In[1]:
+# In[107]:
 
 
 # Import required libraries 
+import zipfile
 import numpy as np 
 import pandas as pd 
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import seaborn as sns
+print("Imported required libraries for EDA.")
 
 
-# In[2]:
+# In[104]:
 
 
-# Load the merged dataframes 
+# Load the merged dataframes from local CSV files 
 
-# Basics & Ratings data for IMDb titles
-IMDb_df = pd.read_csv("/Users/jesuscantu/Desktop/COMP_406/Processed_Data/IMDb_basic_ratings_data.csv", low_memory = False)
+# Basics & Ratings data for IMDb titles (from CSV file)
+IMDb_df = pd.read_csv(f'{root_dir}/Processed_Data/IMDb_basic_ratings_data.csv', low_memory = False)
 
-# Basics, Ratings & Episodes data for IMDb titles
-IMDb_df2 = pd.read_csv("/Users/jesuscantu/Desktop/COMP_406/Processed_Data/IMDb_basic_ratings_episodes_data.csv", low_memory = False)
+# Basics, Ratings & Episodes data for IMDb titles (from CSV file)
+IMDb_df2 = pd.read_csv(f'{root_dir}/Processed_Data/IMDb_basic_ratings_episodes_data.csv', low_memory = False)
 
-print("IMDb data has finished loading.")
+print("IMDb merged data has finished loading from CSV files.")
 
 
-# In[3]:
+# In[105]:
+
+
+# Load the merged dataframes from local zip files
+# Use this if using code from GitHub repo!  
+
+# Specify the paths to the zip files
+zip_path1 = f'{root_dir}/Processed_Data/IMDb_basic_ratings_data.csv.zip'
+zip_path2 = f'{root_dir}/Processed_Data/IMDb_basic_ratings_episodes_data.csv.zip'
+
+# Specify the names of the CSV files inside the zip files
+csv_filename1 = 'IMDb_basic_ratings_data.csv'
+csv_filename2 = 'IMDb_basic_ratings_episodes_data.csv'
+
+# Extract the first CSV file from the first zip file
+with zipfile.ZipFile(zip_path1, 'r') as zip_ref:
+    zip_ref.extract(csv_filename1, path='temp_folder')  # Extract to a temporary folder
+
+# Extract the second CSV file from the second zip file
+with zipfile.ZipFile(zip_path2, 'r') as zip_ref:
+    zip_ref.extract(csv_filename2, path='temp_folder')  # Extract to the same temporary folder
+
+# Load the first CSV file into a pandas DataFrame
+csv_path1 = 'temp_folder/' + csv_filename1
+IMDb_df = pd.read_csv(csv_path1, low_memory = False) 
+
+
+# Load the second CSV file into a pandas DataFrame
+csv_path2 = 'temp_folder/' + csv_filename2
+IMDb_df2 = pd.read_csv(csv_path2, low_memory = False)
+
+# Do further processing with the DataFrames...
+
+# Cleanup: Remove the temporary folder
+import os
+os.remove(csv_path1)
+os.remove(csv_path2)
+os.rmdir('temp_folder')
+
+print("IMDb merged data has finished loading from zip files.")
+
+
+# In[93]:
 
 
 # Clean the merged data sets 
@@ -274,31 +406,31 @@ IMDb_df['startYear'] = IMDb_df['startYear'].dt.year.fillna(0).astype(int)
 IMDb_df2['startYear'] = IMDb_df2['startYear'].dt.year.fillna(0).astype(int)
 
 
-# In[4]:
+# In[94]:
 
 
 IMDb_df.head(5)
 
 
-# In[5]:
+# In[95]:
 
 
 IMDb_df.info()
 
 
-# In[6]:
+# In[33]:
 
 
 IMDb_df2.head(5)
 
 
-# In[7]:
+# In[34]:
 
 
 IMDb_df2.info()
 
 
-# In[69]:
+# In[35]:
 
 
 # Get the number of unique years, title types, and genres in the IMDb dataset
@@ -315,7 +447,7 @@ print("Number of unique title types:", num_title_types)
 print("Number of unique genres:", num_genres)
 
 
-# In[70]:
+# In[36]:
 
 
 # Check genres 
@@ -325,7 +457,7 @@ IMDb_df['genres'].value_counts().head(10) # displays counts for top 10 genres
 # Note, each title in the data set can be associated with at most three different genres!
 # We will move on to visualizing the number of titles played each year by title type and genre. 
 
-# In[71]:
+# In[37]:
 
 
 # Create a horizontal bar chart showing total number of titles by type across the full data set 
@@ -351,7 +483,7 @@ plt.grid(axis = 'x')
 plt.show()
 
 
-# In[72]:
+# In[38]:
 
 
 # Plot the counts of different titles by year and title type 
@@ -396,7 +528,7 @@ plt.show()
 
 # It seems the IMDb title types with the greatest number of titles released between 1974 and 2023 are TV episodes, followed by movies and short films. 
 
-# In[73]:
+# In[39]:
 
 
 # Create a horizontal bar plot of the top 15 IMDb genres by number of titles
@@ -425,7 +557,7 @@ plt.show()
 
 # It seems the IMDb genres with the highest total number of titles released between 1974 and 2023 are Drama, Comedy, and Documentary. 
 
-# In[74]:
+# In[40]:
 
 
 # Find the top 5 genres based on averageRating and numVotes for each decade
@@ -463,7 +595,7 @@ for decade in top_genres.keys():
 # 
 # 
 
-# In[75]:
+# In[52]:
 
 
 # Define a dictionary to map the binary values (isAdult) to categorical values
@@ -491,7 +623,7 @@ plt.show()
 
 # It seems more non-adult content is created each year. Notice, the sharp increase in non-adult content in the early 2000s and the significant drop in 2020, following the start of the COVID-19 pandemic. Lets look at runtime now, particularly for movies and TV episodes, and see how that has changed with time.  
 
-# In[76]:
+# In[53]:
 
 
 # Filter the data to only include movies
@@ -512,7 +644,7 @@ plt.title('Average Runtime of Movies Each Year')
 plt.show()
 
 
-# In[77]:
+# In[54]:
 
 
 # Filter the data to only include tvEpisode
@@ -538,7 +670,7 @@ plt.show()
 
 # Lets dig a little deeper into viewer preferences and see what types of titles and genres have higher ratings among viewers. 
 
-# In[13]:
+# In[55]:
 
 
 # Calculate the average number of episodes per season for all unique shows in the data set 
@@ -564,7 +696,7 @@ merged_data = pd.merge(merged_data, avg_episodes_per_season, on='parentTconst', 
 merged_data.head()
 
 
-# In[27]:
+# In[56]:
 
 
 # Create a plot showing the average number of episodes per season for each year
@@ -586,24 +718,7 @@ plt.show()
 
 # This plot helps us visualize the trend of the average number of episodes per season for TV series over the years. By grouping the data by startYear and calculating the average number of episodes per season for each year, we can see if there is any change in the trend over time. The plot shows that the average number of episodes per season has decreased slightly from the early 2000s to the present day. 
 
-# In[ ]:
-
-
-# Count the number of seasons for each show
-season_counts = episodes_per_season.groupby(['parentTconst', 'startYear']).size().reset_index(name='seasonCount')
-
-# Calculate the average number of episodes per season for all unique shows
-avg_episodes_per_season = episodes_per_season.groupby(['parentTconst', 'startYear'])['episodeNumber'].mean().reset_index(name='avgEpisodesPerSeason')
-
-# Visualize the results in a line plot
-plt.plot(avg_episodes_per_show.index, avg_episodes_per_show.values)
-plt.title('Average Number of Episodes per Season for Unique Shows (All Years)')
-plt.xlabel('Show')
-plt.ylabel('Average Number of Episodes')
-plt.show()
-
-
-# In[78]:
+# In[48]:
 
 
 # Create a boxplot that displays the distribution of average ratings by title type 
@@ -632,7 +747,8 @@ for i, title_type in enumerate(avg_ratings_by_title_type.index[:3]):
     print("{}. {} (avg rating = {:.2f})".format(i+1, title_type, avg_ratings_by_title_type[title_type]))
 
 
-# In[79]:
+
+# In[49]:
 
 
 # Create a boxplot that displays the distribution of average ratings by genre (top 10)
@@ -672,7 +788,7 @@ for i, genre in enumerate(avg_ratings_by_genre.index[:3]):
 
 # Now, lets find the highest rated movie each year in the 2000s.
 
-# In[80]:
+# In[50]:
 
 
 # Find the highest rated movie each year in the 2000s based on average ratings
@@ -695,7 +811,7 @@ result.head(24)
 
 # As well as the the highest rated TV series each year in the 2000s.
 
-# In[81]:
+# In[51]:
 
 
 # Find the highest rated tvSeries each year in the 2000s based on average ratings
@@ -721,7 +837,7 @@ result.head(24)
 # Linear regression can help us understand the relationship between two variables, such as average rating and runtime, by identifying if there is a significant linear relationship between them. A linear regression model will estimate the slope and intercept of the linear relationship between the two variables; we can use this information to predict the value of one variable based on the other.
 # 
 
-# In[31]:
+# In[106]:
 
 
 # Import required libraries
@@ -731,15 +847,16 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import PolynomialFeatures
+print("Imported required libraries for data modeling.")
 
 
-# In[32]:
+# In[64]:
 
 
 IMDb_df.info()
 
 
-# In[33]:
+# In[65]:
 
 
 # Adjust variable types for regression analysis
@@ -751,7 +868,7 @@ IMDb_df['genres'] = IMDb_df['genres'].astype('category')
 IMDb_df['averageRating'] = IMDb_df['averageRating'].astype(int)
 
 
-# In[34]:
+# In[66]:
 
 
 IMDb_df.info()
@@ -938,6 +1055,9 @@ plt.show()
 
 
 # Moving forward, it would be a good idea to incorporate more data, from the other available IMDb data sets, and test out other variables that might be better predictors of a title's average rating than runtime. Obtaining the data directly from the IMDb API is also recommended as this will result in a more comprehensive and customizable list of attributes per title. 
+
+# __Part 2__ of this exercise will focus on obtaining the data directly from the IMDb database utilizing their API, as well as creating a recommender system for TV shows/movies using their data.
+# 
 
 # In[ ]:
 
