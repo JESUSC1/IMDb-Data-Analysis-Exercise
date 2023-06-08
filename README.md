@@ -7,7 +7,7 @@
 # Data-Science-Exercise-Python
 __Part 1__ of this project is to begin exploring the data on IMDb and some of the associations that may exist between the various variables available. The hope is to take the findings from this report into consideration when creating a recommender system for TV shows/movies or revenue prediction models using IMDb data.
 
-To follow along the code in the notebook, click on 'Open in Colab'! 
+Click 'Open in Colab' to follow along with the code in this notebook!
 
 Python Version: 3.10.9
 Python Libraries: for data wrangling (Pandas, Numpy), for visualization (Matplotlib, Seaborn), and data modeling (Scikit-Learn)  
