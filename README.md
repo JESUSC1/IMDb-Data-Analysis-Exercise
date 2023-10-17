@@ -2,8 +2,7 @@
 # IMDb-Data-Analysis-Exercise-Part-1 
 ![IMDb Image](IMDb.jpg)
 
-## Description
-This project focuses on exploring IMDb data to uncover associations between various variables. With insights drawn from this analysis, the goal is to set the foundation for building recommender systems for TV shows/movies or revenue prediction models using IMDb data.
+Dove deep into IMDb data using Python and visualization tools, unveiling title release patterns and viewer predilections. Applied regression models to predict title ratings, and set the groundwork for building recommender systems for TV shows/movies or revenue prediction models using IMDb data.
 
 ## Data Source
 The primary data source for this analysis is IMDb, an extensive online database that provides detailed information about films, TV series, podcasts, video games, and other media content.
