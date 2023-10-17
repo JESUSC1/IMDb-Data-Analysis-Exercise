@@ -1,17 +1,48 @@
-<a href="https://colab.research.google.com/drive/1_6HecpiJpMa_Ahs4nnMA_U4LWWyIqREg?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" width="100" height="20"></a>
-<img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" width="100" height="20">
-<img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy" width="100" height="20">
-<img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib" width="100" height="20">
-<img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn" width="100" height="20">
 
+# IMDb-Data-Analysis-Exercise-Part1 
+![IMDb Image](IMDb.jpg)
 
-# Data-Science-Exercise-Python
-__Part 1__ of this project begins exploring the data on IMDb and some of the associations that may exist between the various variables available. The hope is to take the findings from this exercise into consideration when creating a recommender system for TV shows/movies or revenue prediction models using IMDb data (Coming soon in Part 2).
+## Description
+This project focuses on exploring IMDb data to uncover associations between various variables. With insights drawn from this analysis, the goal is to set the foundation for building recommender systems for TV shows/movies or revenue prediction models using IMDb data.
 
-Click 'Open in Colab' to follow along with the code in this notebook!
+## Data Source
+The primary data source for this analysis is IMDb, an extensive online database that provides detailed information about films, TV series, podcasts, video games, and other media content.
 
-Python Version: 3.10.9
+## Analysis
+- Initiated the exploratory analysis by identifying the time span of the dataset and categorizing titles by type and genre.
+- Visualized the number of titles released each year, identifying predominant title types like TV episodes, movies, and short films.
+- Explored viewer preferences, determining genres like Drama, Comedy, and Documentary as the most popular.
+- Analyzed title runtime trends over the years, highlighting shifts in movie and TV episode durations.
 
-Required Python Libraries: for data wrangling (Pandas, Numpy), for visualization (Matplotlib, Seaborn), and data modeling (Scikit-Learn)  
+## Libraries Used
+The analysis utilizes the following Python libraries and packages:
+- `Seaborn`: For enhanced data visualization.
+- `Sklearn`: For machine learning and data preprocessing (`mean_squared_error`, `LinearRegression`, `PolynomialFeatures`, `RandomForestRegressor`, `train_test_split`, `OneHotEncoder`).
+- `Matplotlib`: For data visualization.
+- `Numpy`: For numerical computations.
+- `Pandas`: For data manipulation and analysis.
+- `Urllib`: For URL handling and web access.
+- `OS`: For interacting with the operating system.
+- `IO`: For handling streams.
+- `Gzip`: For working with gzipped files.
+- `Zipfile`: For extracting and creating zip archives.
 
+## Key Achievements
+- Successfully analyzed and visualized IMDb data, uncovering key trends and patterns in title releases and viewer preferences.
+- Applied regression models, including linear, polynomial, and random forest, to predict title ratings based on runtime, gaining insights into factors influencing viewer ratings.
+
+## Conclusion
+The "IMDb-Data-Analysis-Exercise-Part1" provides an in-depth look into IMDb data, revealing valuable insights into media consumption trends, viewer preferences, and title characteristics. This foundational analysis sets the stage for more advanced studies, including the development of recommendation systems.
+
+## Future Work
+The next phase, "Part 2", will focus on obtaining data directly from the IMDb database using their API. It will also delve into creating a recommender system for TV shows/movies using the comprehensive IMDb dataset.
+
+# Note
+To fully understand the conclusions drawn in this analysis, it is recommended to go through the entire notebook, including the code and its outputs. You can view the HTML version of the notebook [here](https://nbviewer.org/github/JESUSC1/Speech-Recognition-Exercise/blob/main/Speech_Recognition_Exercise.ipynb).
+
+## Author
+Jesus Cantu Jr.
+
+## Last Updated 
+June 6, 2023
 
