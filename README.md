@@ -1,5 +1,5 @@
 
-# IMDb-Data-Analysis-Exercise-Part1 
+# IMDb-Data-Analysis-Exercise-Part-1 
 ![IMDb Image](IMDb.jpg)
 
 ## Description
@@ -32,7 +32,7 @@ The analysis utilizes the following Python libraries and packages:
 - Applied regression models, including linear, polynomial, and random forest, to predict title ratings based on runtime, gaining insights into factors influencing viewer ratings.
 
 ## Conclusion
-The "IMDb-Data-Analysis-Exercise-Part1" provides an in-depth look into IMDb data, revealing valuable insights into media consumption trends, viewer preferences, and title characteristics. This foundational analysis sets the stage for more advanced studies, including the development of recommendation systems.
+The "IMDb-Data-Analysis-Exercise-Part-1" provides an in-depth look into IMDb data, revealing valuable insights into media consumption trends, viewer preferences, and title characteristics. This foundational analysis sets the stage for more advanced studies, including the development of recommendation systems.
 
 ## Future Work
 The next phase, "Part 2", will focus on obtaining data directly from the IMDb database using their API. It will also delve into creating a recommender system for TV shows/movies using the comprehensive IMDb dataset.
