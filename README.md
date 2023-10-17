@@ -38,7 +38,7 @@ The "IMDb-Data-Analysis-Exercise-Part-1" provides an in-depth look into IMDb dat
 The next phase, "Part 2", will focus on obtaining data directly from the IMDb database using their API. It will also delve into creating a recommender system for TV shows/movies using the comprehensive IMDb dataset.
 
 # Note
-To fully understand the conclusions drawn in this analysis, it is recommended to go through the entire notebook, including the code and its outputs. You can view the HTML version of the notebook [here](https://nbviewer.org/github/JESUSC1/Speech-Recognition-Exercise/blob/main/Speech_Recognition_Exercise.ipynb).
+To fully understand the conclusions drawn in this analysis, it is recommended to go through the entire notebook, including the code and its outputs. You can view the HTML version of the notebook [here](https://nbviewer.org/github/JESUSC1/IMDb-Data-Analysis-Exercise-Part-1/blob/main/IMDb-Data-Analysis-Part-1.ipynb).
 
 ## Author
 Jesus Cantu Jr.
