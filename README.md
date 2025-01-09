@@ -1,5 +1,5 @@
 
-# IMDb-Data-Analysis-Exercise-Part-1 
+# Comprehensive IMDb Data Analysis: Insights into Movie Trends and Pattern
 ![IMDb Image](IMDb.jpg)
 
 Dove deep into IMDb data using Python and visualization tools, unveiling title release patterns and viewer predilections. Applied regression models to predict title ratings, and set the groundwork for building recommender systems for TV shows/movies or revenue prediction models using IMDb data.
@@ -8,7 +8,7 @@ Dove deep into IMDb data using Python and visualization tools, unveiling title r
 The primary data source for this analysis is IMDb, an extensive online database that provides detailed information about films, TV series, podcasts, video games, and other media content.
 
 ## Analysis
-- Initiated the exploratory analysis by identifying the time span of the dataset and categorizing titles by type and genre.
+- Conducted exploratory data analysis (EDA) to determine the dataset's time span and classify titles by type and genre.
 - Visualized the number of titles released each year, identifying predominant title types like TV episodes, movies, and short films.
 - Explored viewer preferences, determining genres like Drama, Comedy, and Documentary as the most popular.
 - Analyzed title runtime trends over the years, highlighting shifts in movie and TV episode durations.
